@@ -1,13 +1,15 @@
+" ***** .vimrc from Lucas StephanouBundle lucasts/dotvim
+" big thanks for steve losh(http://stevelosh.com) and vim recipes(http://vim.runpaint.org/basics/configuring-vim/)
+" and a huge thanks for people writing great plugins!
+
 filetype off
 
-"set verbose=10
- 
 " ******* Vundle
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required!
+" required! 
 Bundle 'gmarik/vundle'
 
 "-- original repos on github
@@ -18,14 +20,14 @@ Bundle 'gmarik/vundle'
 " Bundle 'git://git.wincent.com/command-t.git'
 "-- git repos on your local machine (ie. when working on your own plugin)
 " Bundle 'file:///Users/gmarik/path/to/plugin'
-Bundle 'airblade/vim-gitgutter'
+Bundle 'airblade/vim-gitgutter' 
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/rainbow_parentheses.vim'
 " trying airline instead of powerline. airline is 100% vimscript
 "Bundle 'Lokaltog/vim-powerline'
-Bundle 'bling/vim-airline'
+Bundle 'bling/vim-airline' 
 Bundle 'mbadran/headlights'
 Bundle 'myusuf3/numbers.vim'
 Bundle 'othree/html5.vim'
@@ -446,7 +448,7 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/](farofus|cache|busca)$',
   \ 'file': '\v\.(DS_Store|svn|png|jpe?g|gif|elc|rbc|pyc|swp|psd|ai|pdf|log|mov|aep|dmg|zip|gz)$',
   \ }
-
+  
 "(\.git|cache\/|busca|\.sass-cache|techtudo\/static\/compiled|farofus)
 "(\.#.+|\.DS_Store|\.svn|\.png|\.jpe?g|\.gif|\.elc|\.rbc|\.pyc|\.swp|\.psd|\.ai|\.pdf|\.log|\.mov|\.aep|\.dmg|\.zip|\.gz|~)$
 " ****************************************************************************************************
