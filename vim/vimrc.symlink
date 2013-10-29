@@ -185,7 +185,7 @@ endif
 " *** gui vim options
 if has("gui_running")
   set lines=40
-  set guifont=Ubuntu\ Mono\ derivative\ Powerline:h18
+  set guifont=Inconsolata\ XL:h17,Inconsolata:h20,Monaco:h17
   set antialias
   set background=dark
   colorscheme solarized
