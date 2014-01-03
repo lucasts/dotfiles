@@ -38,5 +38,3 @@ do
 done
 
 unset config_files
-
-__rvm_project_rvmrc
