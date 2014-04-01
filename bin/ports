@@ -1,0 +1,4 @@
+#!/bin/sh
+#
+# Stage all unstaged.
+sudo lsof -n | grep LISTEN
