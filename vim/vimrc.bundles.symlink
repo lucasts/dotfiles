@@ -29,8 +29,6 @@
 
 " Snippets & AutoComplete {
     NeoBundle 'Shougo/neocomplete.vim'
-    NeoBundle 'Shougo/neosnippet'
-    NeoBundle 'Shougo/neosnippet-snippets'
 " }
 
 " Python {
@@ -70,3 +68,4 @@
     NeoBundle 'Puppet-Syntax-Highlighting'
     NeoBundle 'xolox/vim-misc'
 " }
+"
