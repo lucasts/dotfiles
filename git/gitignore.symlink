@@ -41,3 +41,6 @@ database.yml
 config/database.yml
 .ruby-version
 .vagrant
+*swp
+coverage
+
