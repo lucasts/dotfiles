@@ -14,6 +14,7 @@
     NeoBundle 'sjl/badwolf'
     NeoBundle 'mbadran/headlights'
     NeoBundle 't9md/vim-choosewin'
+    NeoBundle 'morhetz/gruvbox'
 " }
 
 " General Programming {
