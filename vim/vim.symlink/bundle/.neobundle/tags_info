@@ -4,6 +4,7 @@ badwolf
 ctrlp.vim
 gruvbox
 html5.vim
+jellybeans.vim
 lightline.vim
 neocomplete.vim
 rainbow_parentheses.vim
@@ -21,6 +22,7 @@ vim-javascript
 vim-json
 vim-markdown
 vim-misc
+vim-monokai
 vim-operator-highlight
 vim-rails
 vim-ruby

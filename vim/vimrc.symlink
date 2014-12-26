@@ -21,6 +21,8 @@ call neobundle#begin(expand('~/.vim/bundle/'))
     NeoBundle 'sjl/badwolf'
     NeoBundle 'morhetz/gruvbox'
     NeoBundle 'tomtom/tcomment_vim'
+    NeoBundle 'nanotech/jellybeans.vim'
+    NeoBundle 'sickill/vim-monokai'
 " }
 
 " General Programming {
@@ -99,7 +101,7 @@ set encoding=utf8
 " DISPLAY SETTINGS
 
 set background=dark
-colorscheme gruvbox
+colorscheme monokai
 set scrolloff=2         " 2 lines above/below cursor when scrolling
 set showmatch           " show matching bracket (briefly jump)
 set matchtime=2         " reduces matching paren blink time from the 5[00]ms def
