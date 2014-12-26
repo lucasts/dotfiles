@@ -138,12 +138,16 @@ set shiftround          " makes indenting a multiple of shiftwidth
 set expandtab           " turn a tab into spaces
 set laststatus=2        " the statusline is now always shown
 set noshowmode          " hide the default mode text (e.g. -- INSERT -- below the statusline)
+
 set number
+set numberwidth=5
+
+highlight NonText guibg=#060606
 
 " enforces a specified line-length and auto inserts hard line breaks when we
 " reach the limit; in Normal mode, you can reformat the current paragraph with
 " gqap.
-" set textwidth=80
+set textwidth=80
 
 " this makes the color after the textwidth column highlighted
 set colorcolumn=+1
@@ -159,7 +163,7 @@ set mouse=a             " enables the mouse in all modes
 " When you type the first tab, it will complete as much as possible, the second
 " tab hit will provide a list, the third and subsequent tabs will cycle through
 " completion options so you can complete the file without further keys
-set wildmode=longest,list,full
+set wildmode=list:longest,list:full
 set wildmenu " completion with menu
 set wildignore+=*.o,*.obj,.git,*.pyc,*globocore*,*farofus*,*meu_marketplace*,*libby*,.deps/*
 
@@ -167,6 +171,18 @@ set wildignore+=*.o,*.obj,.git,*.pyc,*globocore*,*farofus*,*meu_marketplace*,*li
 " the possible matches; see :h completeopt
 set completeopt=menu,menuone,longest
 set switchbuf=useopen,usetab
+
+
+function! InsertTabWrapper()
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<c-p>"
+  endif
+endfunction
+inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <S-Tab> <c-n>
 
 " With this, the gui (gvim and macvim) now doesn't have the toolbar, the left
 " and right scrollbars and the menu.
