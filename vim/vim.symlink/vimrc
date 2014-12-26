@@ -1,0 +1,462 @@
+" ***** .vimrc from Lucas StephanouBundle lucasts/dotvim
+" big thanks for steve losh(http://stevelosh.com) and vim recipes(http://vim.runpaint.org/basics/configuring-vim/)
+" and a huge thanks for people writing great plugins!
+
+filetype off
+
+" ******* Vundle
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+"-- original repos on github
+" Bundle 'tpope/vim-fugitive'
+"-- vim-scripts repos
+" Bundle 'L9'
+"-- non github repos
+" Bundle 'git://git.wincent.com/command-t.git'
+"-- git repos on your local machine (ie. when working on your own plugin)
+" Bundle 'file:///Users/gmarik/path/to/plugin'
+Bundle 'airblade/vim-gitgutter' 
+Bundle 'bronson/vim-trailing-whitespace'
+Bundle 'cakebaker/scss-syntax.vim'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'kien/rainbow_parentheses.vim'
+" trying airline instead of powerline. airline is 100% vimscript
+"Bundle 'Lokaltog/vim-powerline'
+Bundle 'bling/vim-airline' 
+Bundle 'mbadran/headlights'
+Bundle 'myusuf3/numbers.vim'
+Bundle 'othree/html5.vim'
+Bundle 'pangloss/vim-javascript'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'sjl/badwolf'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-git'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-rbenv'
+Bundle 'tpope/vim-surround'
+"Bundle 'twe4ked/vim-peepopen'
+Bundle 'kien/ctrlp.vim'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/MatchTagAlways'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'xolox/vim-misc'
+" Bundle 'xolox/vim-session'
+Bundle 'python.vim'
+Bundle 'mattn/zencoding-vim'
+Bundle 'Rename'
+Bundle 'SirVer/ultisnips'
+Bundle 'Valloric/python-indent'
+Bundle 'helino/vim-json'
+Bundle 'hail2u/vim-css3-syntax'
+Bundle 'skammer/vim-css-color'
+Bundle 'Raimondi/delimitMate'
+"Bundle 'marijnh/tern_for_vim'
+Bundle 'tpope/vim-endwise'
+Bundle 'Valloric/vim-indent-guides'
+Bundle 'Valloric/vim-operator-highlight'
+Bundle 'tpope/vim-surround'
+Bundle 'klen/python-mode'
+
+
+" ******* Vundle End
+
+syntax on
+filetype on
+filetype plugin on
+filetype plugin indent on
+
+" turn off compatility with vi and modelines
+set nocompatible
+set modelines=0
+
+set omnifunc=syntaxcomplete#Complete
+
+" no backups files
+set nobackup       "no backup files
+set nowritebackup  "only in case you don't want a backup file while editing
+set noswapfile     "no swap files
+set nowb
+
+set encoding=utf8
+
+" DISPLAY SETTINGS
+colorscheme default     " sets the colorscheme
+set background=dark     " enable for dark terminals
+set scrolloff=2         " 2 lines above/below cursor when scrolling
+set showmatch           " show matching bracket (briefly jump)
+set matchtime=2         " reduces matching paren blink time from the 5[00]ms def
+set showmode            " show mode in status bar (insert/replace/...)
+set showcmd             " show typed command in status bar
+set ruler               " show cursor position in status bar
+set title               " show file in titlebar
+set undofile            " stores undo state even when files are closed (in undodir)
+set cursorline          " highlights the current line
+set winaltkeys=no       " turns of the Alt key bindings to the gui menu
+set ttyfast                     " smooth screen redrawing
+set statusline=%t%(\ [%n%M]%)%(\ %H%R%W%)\ %(%c-%v,\ %l\ of\ %L,\ (%o)\ %P\ 0x%B\ (%b)%)
+set laststatus=2                " always show status line
+set history=50                  " keep 50 lines of command line history
+set incsearch                   " do incremental searching
+set nowrap
+
+" EDITOR SETTINGS
+set backspace=indent,eol,start
+set ignorecase          " case insensitive searching
+set smartcase           " but become case sensitive if you type uppercase characters
+" this can cause problems with other filetypes
+" see comment on this SO question http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim/234578#234578
+"set smartindent         " smart auto indenting
+set autoindent          " on new lines, match indent of previous line
+set copyindent          " copy the previous indentation on autoindenting
+set cindent             " smart indenting for c-like code
+set cino=b1,g0,N-s,t0,(0,W4  " see :h cinoptions-values
+set smarttab            " smart tab handling for indenting
+set magic               " change the way backslashes are used in search patterns
+set bs=indent,eol,start " Allow backspacing over everything in insert mode
+set nobackup            " no backup~ files.
+set tabstop=4           " number of spaces a tab counts for
+set shiftwidth=4        " spaces for autoindents
+set softtabstop=4
+set shiftround          " makes indenting a multiple of shiftwidth
+set expandtab           " turn a tab into spaces
+set laststatus=2        " the statusline is now always shown
+set noshowmode          " hide the default mode text (e.g. -- INSERT -- below the statusline)
+
+" enforces a specified line-length and auto inserts hard line breaks when we
+" reach the limit; in Normal mode, you can reformat the current paragraph with
+" gqap.
+" set textwidth=80
+
+" this makes the color after the textwidth column highlighted
+set colorcolumn=+1
+
+" misc settings
+set fileformat=unix     " file mode is unix
+set fileformats=unix,dos,mac   " detects unix, dos, mac file formats in that order
+set hidden              " allows making buffers hidden even with unsaved changes
+set undolevels=1000     " use many levels of undo
+set autoread            " auto read when a file is changed from the outside
+set mouse=a             " enables the mouse in all modes
+
+" When you type the first tab, it will complete as much as possible, the second
+" tab hit will provide a list, the third and subsequent tabs will cycle through
+" completion options so you can complete the file without further keys
+set wildmode=longest,list,full
+set wildmenu " completion with menu
+set wildignore+=*.o,*.obj,.git,*.pyc,*globocore*,*farofus*,*meu_marketplace*,*libby*,.deps/*
+
+" The "longest" option makes completion insert the longest prefix of all
+" the possible matches; see :h completeopt
+set completeopt=menu,menuone,longest
+set switchbuf=useopen,usetab
+
+" With this, the gui (gvim and macvim) now doesn't have the toolbar, the left
+" and right scrollbars and the menu.
+set guioptions-=T
+set guioptions-=l
+set guioptions-=L
+set guioptions-=r
+set guioptions-=R
+set guioptions-=m
+set guioptions-=M
+
+" this makes sure that shell scripts are highlighted
+" as bash scripts and not sh scripts
+let g:is_posix = 1
+
+" tries to avoid those annoying "hit enter to continue" messages
+" if it still doesn't help with certain commands, add a second <cr>
+" at the end of the map command
+set shortmess=a
+
+set iskeyword+=_,$,@,%,#
+
+" searching with normal regex instead off vim exclusive
+nnoremap / /\v
+vnoremap / /\v
+
+" yeah, stop annoying bells
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+
+" The alt (option) key on macs now behaves like the 'meta' key. This means we
+" can now use <m-x> or similar as maps. This is buffer local, and it can easily
+" be turned off when necessary (for instance, when we want to input special
+" characters) with :set nomacmeta.
+if has("gui_macvim")
+  set macmeta
+endif
+
+" UltiSnips is missing a setf trigger for snippets on BufEnter
+" autocmd vimrc BufEnter *.snippets setf snippets
+
+" In UltiSnips snippet files, we want actual tabs instead of spaces for indents.
+" US will use those tabs and convert them to spaces if expandtab is set when the
+" user wants to insert the snippet.
+" autocmd vimrc FileType snippets set noexpandtab
+
+
+" *** gui vim options
+if has("gui_running")
+  set lines=40
+  set guifont=Ubuntu\ Mono\ derivative\ Powerline:h18
+  set antialias
+  set background=dark
+  colorscheme solarized
+endif
+
+if has("gui_macvim")
+  macmenu &File.New\ Tab key=<nop>
+  map <D-t> :CommandT<CR>
+endif
+" *** end vim options
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                           More involved tweaks                          "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Unicode support (taken from http://vim.wikia.com/wiki/Working_with_Unicode)
+if has("multi_byte")
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
+  set encoding=utf-8
+  setglobal fileencoding=utf-8
+  set fileencodings=ucs-bom,utf-8,latin1
+endif
+
+augroup vimrc
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  " Also don't do it when the mark is in the first line, that is the default
+  " position when opening a file.
+  autocmd BufReadPost *
+        \ if line("'\"") > 1 && line("'\"") <= line("$") && !&diff |
+        \   exe "normal! g`\"" |
+        \ endif
+
+  " Automatically delete trailing DOS-returns and whitespace on file open and
+  " write.
+  autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
+augroup END
+
+" Highlight Class and Function names
+function! s:HighlightFunctionsAndClasses()
+  syn match cCustomFunc      "\w\+\s*\((\)\@="
+  syn match cCustomClass     "\w\+\s*\(::\)\@="
+
+  hi def link cCustomFunc      Function
+  hi def link cCustomClass     Function
+endfunction
+
+" Using '<' and '>' in visual mode to shift code by a tab-width left/right by
+" default exits visual mode. With this mapping we remain in visual mode after
+" such an operation.
+vnoremap < <gv
+vnoremap > >gv
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                       ***  LANG TEAKS   ***                             "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" *** ruby section
+set suffixesadd=.rb
+set path+=lib/**,test/**
+
+if has("ruby") " assume system has ruby
+  " Add stdlib of environment's ruby to path
+  let stdlib = system('ruby -rrbconfig -e"print RbConfig::CONFIG[\"rubylibdir\"]"')
+  let &l:path = &path . "," . stdlib
+endif
+
+let g:ruby_path = &path
+" *** end ruby section
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                       ***  HERE BE PLUGINS  ***                         "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                syntastic                                "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:syntastic_check_on_open=0
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_always_populate_loc_list = 1
+
+let g:syntastic_python_checker = 'flake8' " syntastic checker
+let g:syntastic_python_flake8_args='--ignore=E501' " CAUTION - this will ignore long lines warning
+"let g:syntastic_python_flake8_args='--max-line-lengthx=160'
+
+let g:syntastic_javascript_jsl_conf = " -conf ~/.jslint.conf "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                t-comment                                "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>/ <c-_><c-_>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                NERDTree                                 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" toggles the nerdtree window
+map <leader>= :NERDTreeToggle<CR>
+" This makes the dir of the current file the root of the nerdtree;
+" in effect, it re-centers the nerdtree on the current file's folder.
+nnoremap <F2> :NERDTreeFind<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                session                                  "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" you also need to run :SaveSession once to create the default.vim session that
+" will then be autoloaded/saved from then on
+
+"let g:session_autoload        = 'no'
+"let g:session_autosave        = 'yes'
+"let g:session_default_to_last = 'no'
+"let g:session_directory       = '~/tmp/vim/sessions'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                UltiSnips                                "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" we can't use <tab> as our snippet key since we use that with YouCompleteMe
+" let g:UltiSnipsSnippetsDir         = $HOME . '/dotfiles/vim/UltiSnips'
+let g:UltiSnipsExpandTrigger       = "<m-s>"
+let g:UltiSnipsListSnippets        = "<c-m-s>"
+let g:UltiSnipsJumpForwardTrigger  = "<m-h>"
+let g:UltiSnipsJumpBackwardTrigger = "<m-t>"
+let g:snips_author                 = 'Lucas Stephanou'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               delimitMate                               "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+au vimrc FileType html,xhtml,markdown let b:delimitMate_matchpairs = "(:),[:],{:}"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              vim-css-color                              "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:cssColorVimDoNotMessMyUpdatetime = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              zencoding-vim                              "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:user_zen_leader_key = '<c-b>'
+let g:user_zen_settings = {
+      \  'indentation' : '  '
+      \}
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              YouCompleteMe                              "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_min_num_identifier_candidate_chars = 3
+" let g:ycm_extra_conf_globlist = ['~/repos/*']
+let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
+
+nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
+nnoremap <leader>pg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            vim-indent-guides                            "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_color_change_percent = 7
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             MatchTagAlways                              "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:mta_use_matchparen_group = 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             RainbowParentheses                          "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             python mode                                 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:pymode_folding = 0
+
+let g:pymode_lint = 0 " disable lint, syntastic take care of it
+let g:pymode_rope = 1 " Load rope plugin
+let g:pymode_rope_autocomplete_map = '<C-Space>' " Map keys for autocompletion
+let g:pymode_rope_auto_project = 1 " Auto create and open ropeproject
+let g:pymode_rope_enable_autoimport = 0 " Enable autoimport
+let g:pymode_rope_autoimport_generate = 0 " Auto generate global cache
+let g:pymode_rope_autoimport_underlineds = 0
+let g:pymode_rope_codeassist_maxfixes = 10
+let g:pymode_rope_sorted_completions = 1
+let g:pymode_rope_extended_complete = 1
+let g:pymode_rope_autoimport_modules = ["os","shutil","datetime"]
+let g:pymode_rope_confirm_saving = 1
+let g:pymode_rope_global_prefix = "<C-x>p"
+let g:pymode_rope_local_prefix = "<C-c>r"
+let g:pymode_rope_vim_completion = 1
+let g:pymode_rope_guess_project = 1
+let g:pymode_rope_goto_def_newwin = "botright split"
+let g:pymode_rope_always_show_complete_menu = 0
+
+let g:pymode_virtualenv = 1 " Auto fix vim python paths if virtualenv enabled
+let g:pymode_syntax = 1 " Enable pymode's custom syntax highlighting
+let g:pymode_syntax_all = 1 " Enable all python highlightings
+let g:pymode_syntax_print_as_function = 0 " Highlight "print" as function
+let g:pymode_syntax_indent_errors = g:pymode_syntax_all " Highlight indentation errors
+let g:pymode_syntax_space_errors = g:pymode_syntax_all " Highlight trailing spaces
+let g:pymode_syntax_string_formatting = g:pymode_syntax_all " Highlight string formatting
+let g:pymode_syntax_string_format = g:pymode_syntax_all " Highlight str.format syntax
+let g:pymode_syntax_string_templates = g:pymode_syntax_all " Highlight string.Template syntax
+let g:pymode_syntax_doctests = g:pymode_syntax_all " Highlight doc-tests
+let g:pymode_syntax_builtin_objs = g:pymode_syntax_all " Highlight builtin objects (__doc__, self, etc)
+let g:pymode_syntax_builtin_funcs = g:pymode_syntax_all " Highlight builtin functions
+let g:pymode_syntax_highlight_exceptions = g:pymode_syntax_all " Highlight exceptions
+let g:pymode_syntax_highlight_equal_operator = g:pymode_syntax_all " Highlight equal operator
+let g:pymode_syntax_highlight_stars_operator = g:pymode_syntax_all " Highlight stars operator
+let g:pymode_syntax_highlight_self = g:pymode_syntax_all " Highlight `self`
+let g:pymode_syntax_slow_sync = 0 " For fast machines
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Airline                                     "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set linespace=0
+let g:airline_powerline_fonts=1
+let g:airline_theme='solarized'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             CtrlP                                       "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_map = '<leader>p'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](farofus|cache|busca)$',
+  \ 'file': '\v\.(DS_Store|svn|png|jpe?g|gif|elc|rbc|pyc|swp|psd|ai|pdf|log|mov|aep|dmg|zip|gz)$',
+  \ }
+  
+"(\.git|cache\/|busca|\.sass-cache|techtudo\/static\/compiled|farofus)
+"(\.#.+|\.DS_Store|\.svn|\.png|\.jpe?g|\.gif|\.elc|\.rbc|\.pyc|\.swp|\.psd|\.ai|\.pdf|\.log|\.mov|\.aep|\.dmg|\.zip|\.gz|~)$
+" ****************************************************************************************************
+" ****************************************************************************************************
+" ****************************************************************************************************
+
+
+" allow .vimrc files to be loaded in project folders
+set exrc
+" breaks any attenpt to run potentially dangerous commands via project's .vimrc files
+set secure
