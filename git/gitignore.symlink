@@ -44,3 +44,4 @@ config/database.yml
 *swp
 coverage
 
+*.un*
