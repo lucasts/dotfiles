@@ -8,54 +8,37 @@ endif
 call neobundle#begin(expand('~/.vim/bundle/'))
 
 " General {
-    "NeoBundle 'scrooloose/nerdtree'
-    "NeoBundle 'jistr/vim-nerdtree-tabs'
     NeoBundle 'tpope/vim-surround'
     NeoBundle 'kien/ctrlp.vim'
-    NeoBundle 'itchyny/lightline.vim'
     NeoBundle 'Valloric/vim-operator-highlight'
+    NeoBundle 'tpope/vim-eunuch'
 " }
 
 " Colors {
-    " NeoBundle 'altercation/vim-colors-solarized'
-    NeoBundle 'sjl/badwolf'
     NeoBundle 'morhetz/gruvbox'
-    NeoBundle 'tomtom/tcomment_vim'
-    NeoBundle 'nanotech/jellybeans.vim'
     NeoBundle 'sickill/vim-monokai'
 " }
 
 " General Programming {
-    NeoBundle 'scrooloose/syntastic'
+    NeoBundle 'tomtom/tcomment_vim'
     NeoBundle 'tpope/vim-fugitive'
-    NeoBundle 'godlygeek/tabular'
     NeoBundle 'bronson/vim-trailing-whitespace'
-    NeoBundle 'kien/rainbow_parentheses.vim'
     NeoBundle 'tpope/vim-git'
 " }
 " Snippets & AutoComplete {
     NeoBundle 'Shougo/neocomplete.vim'
 " }
 
-" Python {
-" Pick either python-mode or pyflakes & pydoc
-"    NeoBundle 'klen/python-mode'
-"    NeoBundle 'python.vim'
-"    NeoBundle 'Valloric/python-indent'
-" }
 
 " Javascript {
     NeoBundle 'elzr/vim-json'
     NeoBundle 'pangloss/vim-javascript'
+    NeoBundle 'mxw/vim-jsx'
 " }
 
 " HTML/CSS {
     NeoBundle 'amirh/HTML-AutoCloseTag'
-    NeoBundle 'hail2u/vim-css3-syntax'
-    NeoBundle 'gorodinskiy/vim-coloresque'
-    NeoBundle 'Valloric/MatchTagAlways'
     NeoBundle 'othree/html5.vim'
-    " NeoBundle 'mattn/emmet-vim'
     NeoBundle 'cakebaker/scss-syntax.vim'
 " }
 " Ruby {
@@ -101,7 +84,8 @@ set encoding=utf8
 " DISPLAY SETTINGS
 
 set background=dark
-colorscheme monokai
+" colorscheme monokai
+colorscheme gruvbox
 set scrolloff=2         " 2 lines above/below cursor when scrolling
 set showmatch           " show matching bracket (briefly jump)
 set matchtime=2         " reduces matching paren blink time from the 5[00]ms def
@@ -138,9 +122,14 @@ set shiftround          " makes indenting a multiple of shiftwidth
 set expandtab           " turn a tab into spaces
 set laststatus=2        " the statusline is now always shown
 set noshowmode          " hide the default mode text (e.g. -- INSERT -- below the statusline)
+set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 
 set number
 set numberwidth=5
+
+" Fix slow O inserts
+:set timeout timeoutlen=1000 ttimeoutlen=100
+
 
 highlight NonText guibg=#060606
 
@@ -160,12 +149,9 @@ set undolevels=1000     " use many levels of undo
 set autoread            " auto read when a file is changed from the outside
 set mouse=a             " enables the mouse in all modes
 
-" When you type the first tab, it will complete as much as possible, the second
-" tab hit will provide a list, the third and subsequent tabs will cycle through
-" completion options so you can complete the file without further keys
-set wildmode=list:longest,list:full
-set wildmenu " completion with menu
-set wildignore+=*.o,*.obj,.git,*.pyc,*globocore*,*farofus*,*meu_marketplace*,*libby*,.deps/*
+set wildmode=longest,list
+set wildmenu
+set wildignore+=*.o,*.obj,.git,*.pyc
 
 " The "longest" option makes completion insert the longest prefix of all
 " the possible matches; see :h completeopt
@@ -297,90 +283,21 @@ autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                       ***  HERE BE PLUGINS  ***                         "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                syntastic                                "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:syntastic_check_on_open=0
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_always_populate_loc_list = 1
-
-let g:syntastic_javascript_checkers = ['jshint']
-" let g:syntastic_ruby_syntax_checkers=["rubylint"]
-
-" let g:syntastic_python_checker = 'flake8' " syntastic checker
-" let g:syntastic_python_flake8_args='--ignore=E501' " CAUTION - this will ignore long lines warning
-" let g:syntastic_python_flake8_args='--max-line-lengthx=160'
-
-" let g:syntastic_javascript_jsl_conf = " -conf ~/.jslint.conf "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                t-comment                                "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" t-comment
 map <leader>/ <c-_><c-_>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                NERDTree                                 "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" toggles the nerdtree window
-" map <leader>= :NERDTreeToggle<CR>
-" This makes the dir of the current file the root of the nerdtree;
-" in effect, it re-centers the nerdtree on the current file's folder.
-" nnoremap <F2> :NERDTreeFind<cr>
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                               delimitMate                               "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" delimitMate
 au vimrc FileType html,xhtml,markdown let b:delimitMate_matchpairs = "(:),[:],{:}"
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                            vim-indent-guides                            "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_color_change_percent = 7
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                             MatchTagAlways                              "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-let g:mta_use_matchparen_group = 0
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                             RainbowParentheses                          "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                             Airline / Lightline                         "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:lightline = { 'colorscheme': 'solarized', }
-
-"  set linespace=0
-" let g:airline_powerline_fonts=1
-" let g:airline_theme='solarized'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                             CtrlP                                       "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CtrlP
 let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/](node_modules|cache|busca)$',
   \ 'file': '\v\.(DS_Store|svn|png|jpe?g|gif|elc|rbc|pyc|swp|psd|ai|pdf|log|mov|aep|dmg|zip|gz)$',
   \ }
-
-" *************************************************************************
-" *************************************************************************
-" *************************************************************************
 
 
 " allow .vimrc files to be loaded in project folders
