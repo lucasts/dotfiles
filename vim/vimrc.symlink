@@ -121,7 +121,6 @@ set softtabstop=2
 set shiftround          " makes indenting a multiple of shiftwidth
 set expandtab           " turn a tab into spaces
 set laststatus=2        " the statusline is now always shown
-set noshowmode          " hide the default mode text (e.g. -- INSERT -- below the statusline)
 set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 
 set number
@@ -194,6 +193,12 @@ set iskeyword+=_,$,@,%,#
 " searching with normal regex instead off vim exclusive
 nnoremap / /\v
 vnoremap / /\v
+
+" enter command mode with ;
+nnoremap ; :
+
+" start a external command with a single !
+nnoremap ! :!
 
 " yeah, stop annoying bells
 set noerrorbells visualbell t_vb=
