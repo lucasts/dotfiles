@@ -3,6 +3,7 @@ ctrlp.vim
 gruvbox
 html5.vim
 neocomplete.vim
+one-dark.vim
 scss-syntax.vim
 tcomment_vim
 vim-endwise
@@ -12,7 +13,6 @@ vim-git
 vim-go
 vim-javascript
 vim-json
-vim-jsx
 vim-markdown
 vim-misc
 vim-monokai

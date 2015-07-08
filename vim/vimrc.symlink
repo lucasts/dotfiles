@@ -8,32 +8,32 @@ endif
 call neobundle#begin(expand('~/.vim/bundle/'))
 
 " General {
-    NeoBundle 'tpope/vim-surround'
-    NeoBundle 'kien/ctrlp.vim'
+    NeoBundle 'tpope/vim-surround' " manage ( ), [] etc
+    NeoBundle 'kien/ctrlp.vim' " fuzzy finder
     NeoBundle 'Valloric/vim-operator-highlight'
-    NeoBundle 'tpope/vim-eunuch'
+    NeoBundle 'tpope/vim-eunuch' " sugar UNIX commands
 " }
 
 " Colors {
     NeoBundle 'morhetz/gruvbox'
     NeoBundle 'sickill/vim-monokai'
+    NeoBundle 'geoffharcourt/one-dark.vim'
 " }
 
 " General Programming {
-    NeoBundle 'tomtom/tcomment_vim'
-    NeoBundle 'tpope/vim-fugitive'
-    NeoBundle 'bronson/vim-trailing-whitespace'
-    NeoBundle 'tpope/vim-git'
+    NeoBundle 'tomtom/tcomment_vim' " easy comments
+    NeoBundle 'tpope/vim-fugitive' " git command wrappers
+    NeoBundle 'bronson/vim-trailing-whitespace' " auto remove whitespace
+    NeoBundle 'tpope/vim-git' " git basic support
 " }
+
 " Snippets & AutoComplete {
     NeoBundle 'Shougo/neocomplete.vim'
 " }
 
-
 " Javascript {
-    NeoBundle 'elzr/vim-json'
-    NeoBundle 'pangloss/vim-javascript'
-    NeoBundle 'mxw/vim-jsx'
+    NeoBundle 'elzr/vim-json' " json support improvements
+    NeoBundle 'pangloss/vim-javascript' " js support improvements
 " }
 
 " HTML/CSS {
@@ -41,6 +41,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
     NeoBundle 'othree/html5.vim'
     NeoBundle 'cakebaker/scss-syntax.vim'
 " }
+
 " Ruby {
     NeoBundle 'vim-ruby/vim-ruby'
     NeoBundle 'tpope/vim-rails'
@@ -84,8 +85,7 @@ set encoding=utf8
 " DISPLAY SETTINGS
 
 set background=dark
-colorscheme monokai
-"colorscheme gruvbox
+colorscheme onedark
 set scrolloff=2         " 2 lines above/below cursor when scrolling
 set showmatch           " show matching bracket (briefly jump)
 set matchtime=2         " reduces matching paren blink time from the 5[00]ms def
@@ -224,10 +224,11 @@ endif
 " *** gui vim options
 if has("gui_running")
   set lines=40
-  set guifont=Ubuntu\ Mono\ 16
+  " set guifont=Ubuntu\ Mono\ 16
+  set guifont=Fira\ Mono\ 14
   set antialias
   set background=dark
-  colorscheme gruvbox
+  colorscheme onedark
 endif
 
 if has("gui_macvim")
